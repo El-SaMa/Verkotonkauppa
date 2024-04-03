@@ -1,0 +1,39 @@
+
+# Original code for product search
+def search_products(query):
+    # Perform a database query to find products matching the query
+    results = db.query("SELECT * FROM products WHERE name LIKE %s", f"%{query}%")
+    return results
+
+# Enhanced code with indexing and caching
+class ProductSearch:
+    def __init__(self):
+        self.product_index = {}  # Initialize an empty index
+
+    def build_index(self):
+        # Fetch all products from the database
+        all_products = db.query("SELECT * FROM products")
+        for product in all_products:
+            # Create an index entry for each product name
+            for word in product["name"].split():
+                word = word.lower()
+                if word not in self.product_index:
+                    self.product_index[word] = []
+                self.product_index[word].append(product)
+
+    def search_products(self, query):
+        # Check if the query term is in the index
+        query_terms = query.lower().split()
+        matching_products = []
+        for term in query_terms:
+            if term in self.product_index:
+                matching_products.extend(self.product_index[term])
+
+        # Deduplicate and return the results
+        return list(set(matching_products))
+
+# Usage example
+product_search = ProductSearch()
+product_search.build_index()
+results = product_search.search_products("running shoes")
+print(results)
