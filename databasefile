@@ -1,7 +1,3 @@
-#In this enhanced code:
-#Build an index of product names during initialization to speed up search queries.
-#The index maps each word in product names to the corresponding products.
-#When searching for products, we look up the index for matching terms and return the results.
 
 # Original code for product search
 def search_products(query):
