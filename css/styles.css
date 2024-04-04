@@ -57,3 +57,60 @@ body {
     margin-top: 3rem !important;
 }
 
+/* Basic Styles */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .header, .footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  .navigation, .sidebar {
+    background: #ccc;
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 1rem;
+  }
+  
+  /* Medium Devices (tablets) */
+  @media (min-width: 768px) {
+    .navigation, .sidebar {
+      width: 25%;
+    }
+  
+    .main-content {
+      width: 50%;
+    }
+  }
+  
+  /* Large Devices (desktops) */
+  @media (min-width: 1024px) {
+    .container {
+      justify-content: space-between;
+    }
+  
+    .navigation, .sidebar {
+      width: 20%;
+    }
+  
+    .main-content {
+      width: 60%;
+    }
+  }
+  
