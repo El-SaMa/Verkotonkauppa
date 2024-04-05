@@ -1,0 +1,36 @@
+Website Bug Report Template
+Reporter Name:
+
+[Name of the person reporting]
+Date:
+
+[Date of the report]
+Browser/Device:
+
+[Browser and version, or Device and OS version]
+Page/URL:
+
+[Exact URL where the bug was encountered]
+Bug Title:
+
+[Short and descriptive title of the bug]
+Steps to Reproduce:
+
+[First step]
+[Second step]
+[And so on...]
+Expected Behavior:
+
+[What you expected to happen]
+Actual Behavior:
+
+[What actually happened]
+Severity:
+
+[Critical/Major/Minor]
+Screenshots/Attachments:
+
+[Attach any relevant screenshots or files]
+Notes:
+
+[Any additional information that might be useful]
