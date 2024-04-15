@@ -43,7 +43,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       issues: write
-    if: github.event_name == 'closed'
+    if: github.event_name == 'issues' && github.event.action == 'closed'
     steps:
       - name: Comment on issue state change
         uses: peter-evans/create-or-update-comment@v1
