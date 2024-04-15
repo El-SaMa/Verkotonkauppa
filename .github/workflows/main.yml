@@ -1,6 +1,6 @@
 name: Label & comment issues
 
-# This action will trigger when an issue is reopened or opened.
+# This action will trigger when an issue is reopened, opened, or closed.
 on:
   issues:
     types:
@@ -10,7 +10,6 @@ on:
   pull_request:
     types:
       - opened
-  runs-on: ubuntu-latest
 
 jobs:
   label_issues:
