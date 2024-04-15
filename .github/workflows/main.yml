@@ -51,7 +51,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-    if: github.event_name == 'pull_request'  # && github.event.pull_request.number == 1 # Uncomment to only run on first pull request
+    if: github.event_name == 'pull_request'  && github.event.pull_request.number == 1 # comment for testing or Uncomment to only run on first pull request
     steps:
       - name: Comment on first pull request
         uses: peter-evans/create-or-update-comment@v1
