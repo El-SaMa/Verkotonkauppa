@@ -1,26 +1,25 @@
 name: Label & comment issues
 
-# This action will trigger when an issue is reopened or opened.
+# Define the events that trigger the workflow
 on:
   issues:
-    types:
-      - reopened # This action will trigger when an issue is reopened.
-      - opened # This action will trigger when an issue is opened.
-      - closed # This action will trigger when an issue is closed.
+    types: [reopened, opened, closed]
   pull_request:
-    types:
-      - opened # This action will trigger when a pull request is opened.
-  runs-on: ubuntu-latest
+    types: [opened]
 
+# Specify the environment where the jobs will run
+runs-on: ubuntu-latest
+
+# Define the jobs that run in the workflow
 jobs:
-  # This job labels issues with the "issue" and "fix" labels.
+  # Job to label issues with the "issue" and "fix" labels and comment on new issues
   label_issues:
-    name: Label issues # Add the missing 'name' field
+    name: Label issues
     permissions:
       issues: write
       pull_requests: write
     steps:
-      - name: attach label to issues
+      - name: Attach label to issues
         uses: actions/github-script@v6
         with:
           script: |
@@ -31,16 +30,15 @@ jobs:
               labels: ["issue", "fix"]
             })
 
-      # This step comments on new issues with a thank you message.
       - name: Comment on new issue
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ github.event.issue.number }}
           body: "Thanks for opening this issue! We'll take a look as soon as possible."
 
-  # This job comments on closed issues with a resolved message.
+  # Job to comment on closed issues
   comment_on_closed_issue:
-    name: Comment on closed issue # Add the missing 'name' field
+    name: Comment on closed issue
     permissions:
       issues: write
     if: github.event_name == 'closed'
@@ -51,14 +49,12 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           body: "The issue is now resolved."
 
-  # This job comments on the first pull request with a congratulations message.
-  # This workflow is triggered when a pull request is opened and the pull request number is 1.
-  # It adds a comment to the first pull request, congratulating the user on opening their first pull request.
+  # Job to comment on the first pull request
   comment_on_first_pull_request:
-    name: Comment on first pull request # Add the missing 'name' field
+    name: Comment on first pull request
     permissions:
       pull_requests: write
-    if: github.event_name == 'pull_request' # && github.event.pull_request.number == 1
+    if: github.event_name == 'pull_request'
     steps:
       - name: Comment on first pull request
         uses: peter-evans/create-or-update-comment@v1
