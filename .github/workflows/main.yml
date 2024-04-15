@@ -1,24 +1,25 @@
 name: Label & comment issues
 
-# Define the events that trigger the workflow
+# This action will trigger when an issue is reopened or opened.
 on:
   issues:
-    types: [reopened, opened, closed]
+    types:
+      - reopened
+      - opened
+      - closed
   pull_request:
-    types: [opened]
+    types:
+      - opened
+  runs-on: ubuntu-latest
 
-# Specify the environment where the jobs will run
-runs-on: ubuntu-latest
-
-# Define the jobs that run in the workflow
 jobs:
-  # Job to label issues with the "issue" and "fix" labels and comment on new issues
   label_issues:
+    runs-on: ubuntu-latest
     permissions:
       issues: write
       pull_requests: write
     steps:
-      - name: Attach label to issues
+      - name: attach label to issues
         uses: actions/github-script@v6
         with:
           script: |
@@ -35,9 +36,8 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           body: "Thanks for opening this issue! We'll take a look as soon as possible."
 
-  # Job to comment on closed issues
   comment_on_closed_issue:
-    name: Comment on closed issue
+    runs-on: ubuntu-latest
     permissions:
       issues: write
     if: github.event_name == 'closed'
@@ -48,9 +48,8 @@ jobs:
           issue-number: ${{ github.event.issue.number }}
           body: "The issue is now resolved."
 
-  # Job to comment on the first pull request
   comment_on_first_pull_request:
-    name: Comment on first pull request
+    runs-on: ubuntu-latest
     permissions:
       pull_requests: write
     if: github.event_name == 'pull_request'
