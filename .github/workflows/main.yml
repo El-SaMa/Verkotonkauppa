@@ -10,11 +10,12 @@ on:
   pull_request:
     types:
       - opened # This action will trigger when a pull request is opened.
-runs-on: ubuntu-latest
+  runs-on: ubuntu-latest
 
 jobs:
   # This job labels issues with the "issue" and "fix" labels.
   label_issues:
+    name: Label issues # Add the missing 'name' field
     permissions:
       issues: write
       pull_requests: write
@@ -39,6 +40,7 @@ jobs:
 
   # This job comments on closed issues with a resolved message.
   comment_on_closed_issue:
+    name: Comment on closed issue # Add the missing 'name' field
     permissions:
       issues: write
     if: github.event_name == 'closed'
@@ -53,6 +55,7 @@ jobs:
   # This workflow is triggered when a pull request is opened and the pull request number is 1.
   # It adds a comment to the first pull request, congratulating the user on opening their first pull request.
   comment_on_first_pull_request:
+    name: Comment on first pull request # Add the missing 'name' field
     permissions:
       pull_requests: write
     if: github.event_name == 'pull_request' # && github.event.pull_request.number == 1
