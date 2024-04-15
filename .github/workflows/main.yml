@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       issues: write
-      pull_requests: write
+      pull-requests: write
     steps:
       - name: attach label to issues
         uses: actions/github-script@v6
@@ -50,8 +50,8 @@ jobs:
   comment_on_first_pull_request:
     runs-on: ubuntu-latest
     permissions:
-      pull_requests: write
-    if: github.event_name == 'pull_request'
+      pull-requests: write
+    if: github.event_name == 'pull-request'
     steps:
       - name: Comment on first pull request
         uses: peter-evans/create-or-update-comment@v1
