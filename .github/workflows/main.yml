@@ -10,9 +10,13 @@ on:
   pull_request:
     types:
       - opened
+      - reopened
+    branches:
+      - main
 
 jobs:
   label_issues:
+    if: github.event.issue && (github.event.action == 'opened' || github.event.action == 'reopened')
     runs-on: ubuntu-latest
     permissions:
       issues: write
@@ -51,7 +55,7 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write
-    if: github.event_name == 'pull_request'  && github.event.pull_request.number == 1 # comment for testing or Uncomment to only run on first pull request
+    if: github.event_name == 'pull_request'  && github.event.pull_request.number == 1
     steps:
       - name: Comment on first pull request
         uses: peter-evans/create-or-update-comment@v1
