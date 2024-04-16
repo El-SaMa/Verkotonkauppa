@@ -1,5 +1,5 @@
 # Verkotonkauppa
- imaginary online store to practicing azure devops tools.
+ imaginary online store to practicing azure devops tools!
  
 This project is a redesign of our existing online store. Our goal is to improve the user experience with a clean, responsive design that makes shopping easier and more enjoyable.
 
