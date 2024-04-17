@@ -16,10 +16,5 @@ steps:
   inputs:
     artifactName: 'my-artifact'  # The artifact name doesn't need the build ID anymore
 
-- task: Email@2
-  inputs:
-    to: 'your-email@example.com'  # Replace with your email address
-    subject: 'Azure Pipeline Failed'
-    body: |
-      The Azure Pipeline failed. Please check the pipeline logs for details.
-    sendEmailForFailedTests: true
+- script: echo "Pipeline completed successfully."
+  displayName: 'Print Success Message'
