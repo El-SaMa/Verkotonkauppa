@@ -1,8 +1,3 @@
-# HTML
-# Archive your static HTML project and save it with the build record.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - main
 
@@ -14,4 +9,17 @@ steps:
   inputs:
     rootFolderOrFile: '$(build.sourcesDirectory)'
     includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/my-artifact-$(Build.BuildId).zip'  # Dynamically name the zip file
+
 - task: PublishBuildArtifacts@1
+  inputs:
+    artifactName: 'my-artifact'  # The artifact name doesn't need the build ID anymore
+
+- task: Email@2
+  inputs:
+    to: 'your-email@example.com'  # Replace with your email address
+    subject: 'Azure Pipeline Failed'
+    body: |
+      The Azure Pipeline failed. Please check the pipeline logs for details.
+    sendEmailForFailedTests: true
