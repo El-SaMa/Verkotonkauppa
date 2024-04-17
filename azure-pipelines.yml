@@ -15,6 +15,7 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     artifactName: 'my-artifact'  # The artifact name doesn't need the build ID anymore
+    publishLocation: 'container'  # Publish artifacts under the "Artifacts" tab
 
 - script: echo "Pipeline completed successfully."
   displayName: 'Print Success Message'
